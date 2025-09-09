@@ -42,6 +42,20 @@
   </form>
   <p id="confirmation" style="margin-top:15px; font-weight:bold;"></p>
 </section>
+    <script>
+function submitBurger() {
+  const form = document.getElementById("burgerForm");
+  const choice = form.burger.value;
+  if(choice) {
+    document.getElementById("confirmation").textContent = 
+      "Tu as choisi : " + choice + " 🍔. Merci !";
+  } else {
+    document.getElementById("confirmation").textContent = 
+      "Merci de choisir un burger !";
+  }
+}
+</script>
+
 
 
   <div class="cta">
