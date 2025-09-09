@@ -23,7 +23,26 @@
       <li>🧀 Cheeseburger Deluxe</li>
       <li>🥬 Veggie Burger</li>
     </ul>
-  </section>
+  <section class="questionnaire">
+  <h2>Choisis ton burger 🍔</h2>
+  <form id="burgerForm">
+    <label>
+      <input type="radio" name="burger" value="Classique"> Burger Classique
+    </label><br>
+    <label>
+      <input type="radio" name="burger" value="Cheeseburger Deluxe"> Cheeseburger Deluxe
+    </label><br>
+    <label>
+      <input type="radio" name="burger" value="Spicy"> Spicy Burger
+    </label><br>
+    <label>
+      <input type="radio" name="burger" value="Veggie"> Veggie Burger
+    </label><br><br>
+    <button type="button" onclick="submitBurger()">Valider</button>
+  </form>
+  <p id="confirmation" style="margin-top:15px; font-weight:bold;"></p>
+</section>
+
 
   <div class="cta">
     <a href="https://wa.me/33612345678" target="_blank">Je viens ! 🎉</a>
