@@ -1,0 +1,99 @@
+/* ==== Import de la police fun ==== */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* ==== Fond du site ==== */
+body {
+  font-family: 'Fredoka One', cursive, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+  background: url("font.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Voile sombre pour lisibilité */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+/* ==== Logo animé en haut à gauche ==== */
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: auto;
+  animation: spin 5s linear infinite;
+  z-index: 1000;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==== En-tête ==== */
+header {
+  padding: 50px 20px;
+}
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+header p {
+  font-size: 1.2rem;
+}
+
+/* ==== Bloc menu ==== */
+.burgers {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.burgers h2 {
+  margin-bottom: 15px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul li {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+/* ==== Bouton ==== */
+.cta {
+  margin: 40px 0;
+}
+.cta a {
+  text-decoration: none;
+  background: #e63946;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  transition: background 0.3s ease;
+}
+.cta a:hover {
+  background: #d62828;
+}
+
+/* ==== Pied de page ==== */
+footer {
+  margin: 30px 0;
+  font-size: 0.9rem;
+  color: #ddd;
+}
