@@ -91,6 +91,37 @@ ul li {
 .cta a:hover {
   background: #d62828;
 }
+.questionnaire {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: left;
+}
+.questionnaire h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.questionnaire label {
+  display: block;
+  margin: 10px 0;
+}
+.questionnaire button {
+  background: #e63946;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.questionnaire button:hover {
+  background: #d62828;
+}
+
 
 /* ==== Pied de page ==== */
 footer {
