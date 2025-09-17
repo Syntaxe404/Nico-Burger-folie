@@ -1,131 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>🍔 Nico Burger Folie — Invitation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nico Burger Folie</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- logo animé -->
-  <img src="dance.gif"Logo Nico Burger" class="logo">
+  <!-- Logo animé -->
+  <img src="logo.png" alt="Logo" class="logo">
 
-  <!-- Conteneur principal -->
-  <main class="page">
-    <!-- Enveloppe / lettre -->
-    <div class="envelope" id="envelope" aria-hidden="false" role="button" tabindex="0">
+  <!-- Enveloppe -->
+  <div class="page">
+    <div class="envelope">
       <div class="envelope-flap"></div>
       <div class="envelope-body">
-        <div class="letter" id="letter">
-          <!-- Contenu de la lettre (invitation) -->
+        <div class="letter">
           <div class="letter-inner">
-            <h1>🍔 Nico Burger Folie 🍟</h1>
-            <p class="lead"><strong>Samedi 23 septembre — 19h30</strong><br>Chez Nico, 42 Rue des Burgers</p>
+            <h1>🍔 Invitation Burger Folie 🍔</h1>
+            <p class="lead">Salut ! Tu es invité à ma soirée Burger Folie 😋</p>
 
-            <section class="burgers">
-              <h2>Au menu :</h2>
+            <div class="burgers">
+              <h2>Menu</h2>
               <ul>
-                <li>🔥 Burger Classique</li>
-                <li>🧀 Cheeseburger Deluxe</li>
-                <li>🌶️ Spicy Burger</li>
-                <li>🥬 Veggie Burger</li>
+                <li>🍔 Classique</li>
+                <li>🌶️ Spicy</li>
+                <li>🧀 Cheese Lover</li>
+                <li>🥬 Veggie</li>
               </ul>
-            </section>
+            </div>
 
-            <!-- Questionnaire -->
-            <section class="questionnaire">
-              <h2>Choisis ton burger 🍔</h2>
-
-              <!-- Remplace action par ton endpoint Formspree -->
-              <form action="https://formspree.io/f/TON_ID" method="POST" id="burgerForm">
+            <div class="questionnaire">
+              <h2>Ton choix</h2>
+              <form action="mailto:tonadresse@mail.com" method="POST" enctype="text/plain">
                 <div class="choices">
-                  <label><input type="radio" name="burger" value="Classique" required> Burger Classique</label>
-                  <label><input type="radio" name="burger" value="Cheeseburger Deluxe"> Cheeseburger Deluxe</label>
-                  <label><input type="radio" name="burger" value="Spicy"> Spicy Burger</label>
-                  <label><input type="radio" name="burger" value="Veggie"> Veggie Burger</label>
+                  <label><input type="radio" name="burger" value="Classique"> Classique</label>
+                  <label><input type="radio" name="burger" value="Spicy"> Spicy</label>
+                  <label><input type="radio" name="burger" value="Cheese"> Cheese Lover</label>
+                  <label><input type="radio" name="burger" value="Veggie"> Veggie</label>
                 </div>
-
-                <input type="email" name="email" placeholder="Ton e-mail (pour confirmation)" required>
-
-                <button type="submit" class="btn">Envoyer ma réponse</button>
-                <p id="formMsg" class="form-msg" aria-live="polite"></p>
+                <input type="email" name="email" placeholder="Ton email" required>
+                <button type="submit" class="btn">Je confirme 🍔</button>
               </form>
-            </section>
+            </div>
 
-            <footer class="invite-footer">
-              <p>On t'attend ! 🎉</p>
-              <p class="small">© 2025 Nico Burger Folie</p>
-            </footer>
+            <div class="invite-footer">
+              <p>📅 Date : Samedi soir</p>
+              <p>📍 Chez Nico</p>
+              <p class="small">On compte sur toi 😁</p>
+            </div>
           </div>
-        </div> <!-- .letter -->
-      </div> <!-- .envelope-body -->
-    </div> <!-- .envelope -->
-  </main>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Script pour ouverture automatique + feedback formulaire -->
+  <!-- Script animations -->
   <script>
-    (function(){
-      const envelope = document.getElementById('envelope');
-      const letter = document.getElementById('letter');
-      const form = document.getElementById('burgerForm');
-      const msg = document.getElementById('formMsg');
+  document.addEventListener("DOMContentLoaded", () => {
+    const envelope = document.querySelector(".envelope");
+    const letter = document.querySelector(".letter");
 
-      // ouvrir l'enveloppe automatiquement au chargement (si pas reduced motion)
-      window.addEventListener('load', () => {
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReduced) {
-          envelope.classList.add('open');
-          letter.classList.add('show');
-        } else {
-          // si utilisateur préfère moins d'animations, on affiche directement le contenu
-          envelope.classList.add('open');
-          letter.classList.add('show');
-        }
-      });
+    envelope.addEventListener("click", () => {
+      // Étape 1 : ouvrir
+      envelope.classList.add("open");
 
-      // toggle ouvr/ferme sur clic / touche entrée
-      envelope.addEventListener('click', () => {
-        envelope.classList.toggle('open');
-        letter.classList.toggle('show');
-      });
-      envelope.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          envelope.click();
-        }
-      });
+      // Étape 2 : chute de l’enveloppe
+      setTimeout(() => {
+        envelope.classList.add("fall");
+      }, 1200);
 
-      // feedback simple lors de l'envoi (Formspree redirige normalement ou renvoie un status)
-      form.addEventListener('submit', (e) => {
-        // on laisse le submit poursuivre normalement (Formspree gère l'envoi),
-        // mais on affiche un message d'attente pour l'utilisateur.
-        msg.textContent = "Envoi en cours…";
-        msg.style.color = "#333";
-        // Optionnel : on pourrait intercepter et utiliser fetch() pour soumettre en AJAX,
-        // mais pour la simplicité et compatibilité GitHub Pages on laisse l'envoi natif.
-      });
-    })();
-  </script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const envelope = document.querySelector(".envelope");
-  const letter = document.querySelector(".letter");
-
-  envelope.addEventListener("click", () => {
-    // Étape 1 : ouvrir l’enveloppe
-    envelope.classList.add("open");
-
-    // Étape 2 : après 1 seconde, la faire tomber
-    setTimeout(() => {
-      envelope.classList.add("fall");
-    }, 1200);
-
-    // Étape 3 : après la chute, afficher la lettre en plein écran
-    setTimeout(() => {
-      letter.classList.add("fullscreen");
-    }, 2500);
+      // Étape 3 : lettre en grand avec rebond
+      setTimeout(() => {
+        letter.classList.add("fullscreen");
+      }, 2500);
+    });
   });
-});
-</script>
+  </script>
 </body>
 </html>
