@@ -237,3 +237,29 @@ body {
   .letter-inner { padding: 16px; }
   .letter-inner h1 { font-size: 1.5rem; }
 }
+/* Animation chute enveloppe */
+@keyframes fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  30%  { transform: translateY(50px) rotate(5deg); }
+  60%  { transform: translateY(150px) rotate(-10deg); opacity: 0.8; }
+  100% { transform: translateY(600px) rotate(20deg); opacity: 0; }
+}
+
+/* Quand l’enveloppe est ouverte ET doit disparaître */
+.envelope.fall {
+  animation: fall 1.2s ease forwards;
+}
+
+/* Lettre en plein écran */
+.letter.fullscreen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 90vw;
+  height: 90vh;
+  z-index: 5000;
+  transition: all 0.8s ease;
+  border-radius: 20px;
+}
+
