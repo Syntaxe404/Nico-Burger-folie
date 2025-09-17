@@ -106,5 +106,26 @@
       });
     })();
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const envelope = document.querySelector(".envelope");
+  const letter = document.querySelector(".letter");
+
+  envelope.addEventListener("click", () => {
+    // Étape 1 : ouvrir l’enveloppe
+    envelope.classList.add("open");
+
+    // Étape 2 : après 1 seconde, la faire tomber
+    setTimeout(() => {
+      envelope.classList.add("fall");
+    }, 1200);
+
+    // Étape 3 : après la chute, afficher la lettre en plein écran
+    setTimeout(() => {
+      letter.classList.add("fullscreen");
+    }, 2500);
+  });
+});
+</script>
 </body>
 </html>
