@@ -14,43 +14,44 @@
   <div class="page">
     <div class="envelope">
       <div class="envelope-flap"></div>
-      <div class="envelope-body">
-        <div class="letter">
-          <div class="letter-inner">
-            <h1>🍔 Invitation Burger Folie 🍔</h1>
-            <p class="lead">Salut ! Tu es invité à ma soirée Burger Folie 😋</p>
+      <div class="envelope-body"></div>
+    </div>
+  </div>
 
-            <div class="burgers">
-              <h2>Menu</h2>
-              <ul>
-                <li>🍔 Classique</li>
-                <li>🌶️ Spicy</li>
-                <li>🧀 Cheese Lover</li>
-                <li>🥬 Veggie</li>
-              </ul>
-            </div>
+  <!-- Lettre (séparée de l’enveloppe) -->
+  <div class="letter fullscreen hidden">
+    <div class="letter-inner">
+      <h1>🍔 Invitation Burger Folie 🍔</h1>
+      <p class="lead">Salut ! Tu es invité à ma soirée Burger Folie 😋</p>
 
-            <div class="questionnaire">
-              <h2>Ton choix</h2>
-              <form action="mailto:tonadresse@mail.com" method="POST" enctype="text/plain">
-                <div class="choices">
-                  <label><input type="radio" name="burger" value="Classique"> Classique</label>
-                  <label><input type="radio" name="burger" value="Spicy"> Spicy</label>
-                  <label><input type="radio" name="burger" value="Cheese"> Cheese Lover</label>
-                  <label><input type="radio" name="burger" value="Veggie"> Veggie</label>
-                </div>
-                <input type="email" name="email" placeholder="Ton email" required>
-                <button type="submit" class="btn">Je confirme 🍔</button>
-              </form>
-            </div>
+      <div class="burgers">
+        <h2>Menu</h2>
+        <ul>
+          <li>🍔 Classique</li>
+          <li>🌶️ Spicy</li>
+          <li>🧀 Cheese Lover</li>
+          <li>🥬 Veggie</li>
+        </ul>
+      </div>
 
-            <div class="invite-footer">
-              <p>📅 Date : Samedi soir</p>
-              <p>📍 Chez Nico</p>
-              <p class="small">On compte sur toi 😁</p>
-            </div>
+      <div class="questionnaire">
+        <h2>Ton choix</h2>
+        <form action="mailto:tonadresse@mail.com" method="POST" enctype="text/plain">
+          <div class="choices">
+            <label><input type="radio" name="burger" value="Classique"> Classique</label>
+            <label><input type="radio" name="burger" value="Spicy"> Spicy</label>
+            <label><input type="radio" name="burger" value="Cheese"> Cheese Lover</label>
+            <label><input type="radio" name="burger" value="Veggie"> Veggie</label>
           </div>
-        </div>
+          <input type="email" name="email" placeholder="Ton email" required>
+          <button type="submit" class="btn">Je confirme 🍔</button>
+        </form>
+      </div>
+
+      <div class="invite-footer">
+        <p>📅 Date : Samedi soir</p>
+        <p>📍 Chez Nico</p>
+        <p class="small">On compte sur toi 😁</p>
       </div>
     </div>
   </div>
@@ -59,21 +60,23 @@
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const envelope = document.querySelector(".envelope");
+    const flap = document.querySelector(".envelope-flap");
     const letter = document.querySelector(".letter");
 
     envelope.addEventListener("click", () => {
-      // Étape 1 : ouvrir
-      envelope.classList.add("open");
+      // Étape 1 : ouvrir le flap
+      flap.style.transform = "perspective(800px) rotateX(-180deg)";
 
-      // Étape 2 : chute de l’enveloppe
+      // Étape 2 : après un moment, faire tomber l’enveloppe
       setTimeout(() => {
         envelope.classList.add("fall");
-      }, 1200);
+      }, 1000);
 
-      // Étape 3 : lettre en grand avec rebond
+      // Étape 3 : afficher la lettre en grand
       setTimeout(() => {
-        letter.classList.add("fullscreen");
-      }, 2500);
+        letter.classList.remove("hidden");
+        letter.classList.add("show");
+      }, 2200);
     });
   });
   </script>
