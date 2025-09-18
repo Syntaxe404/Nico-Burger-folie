@@ -78,33 +78,35 @@
         letter.classList.remove("hidden");
         letter.classList.add("show");
 
-        // Créer un canvas confettis devant tout
-        const myConfetti = confetti.create(document.createElement("canvas"), {
-          resize: true,
-          useWorker: true
-        });
-        myConfetti.canvas.classList.add("confetti-canvas");
-        document.body.appendChild(myConfetti.canvas);
+       // Créer un canvas confettis devant tout
+const canvas = document.createElement("canvas");
+canvas.classList.add("confetti-canvas");
+document.body.appendChild(canvas);
 
-        // 🎉 Explosion de confettis
-        myConfetti({
-          particleCount: 200,
-          spread: 120,
-          origin: { y: 0.6 }
-        });
+const myConfetti = confetti.create(canvas, {
+  resize: true,
+  useWorker: true
+});
 
-        // 🌈 Petite pluie de confettis en plus pendant 2 secondes
-        const duration = 2000;
-        const end = Date.now() + duration;
-        (function frame() {
-          myConfetti({
-            particleCount: 5,
-            spread: 70,
-            origin: { x: Math.random(), y: Math.random() - 0.2 }
-          });
-          if (Date.now() < end) {
-            requestAnimationFrame(frame);
-          }
+// 🎉 Explosion de confettis
+myConfetti({
+  particleCount: 200,
+  spread: 120,
+  origin: { y: 0.6 }
+});
+
+// 🌈 Petite pluie de confettis pendant 2 secondes
+const duration = 2000;
+const end = Date.now() + duration;
+(function frame() {
+  myConfetti({
+    particleCount: 5,
+    spread: 70,
+    origin: { x: Math.random(), y: Math.random() - 0.2 }
+  });
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
         })();
       }, 2200);
     });
