@@ -10,7 +10,7 @@
   <!-- Logo animé -->
   <img src="logo.png" alt="Logo" class="logo">
 
-  <!-- Enveloppe -->
+  <!-- Enveloppe SEULE -->
   <div class="page">
     <div class="envelope">
       <div class="envelope-flap"></div>
@@ -18,8 +18,8 @@
     </div>
   </div>
 
-  <!-- Lettre (séparée de l’enveloppe) -->
-  <div class="letter fullscreen hidden">
+  <!-- Lettre séparée -->
+  <div class="letter hidden">
     <div class="letter-inner">
       <h1>🍔 Invitation Burger Folie 🍔</h1>
       <p class="lead">Salut ! Tu es invité à ma soirée Burger Folie 😋</p>
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <!-- Script animations -->
+  <!-- Script -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const envelope = document.querySelector(".envelope");
@@ -64,15 +64,15 @@
     const letter = document.querySelector(".letter");
 
     envelope.addEventListener("click", () => {
-      // Étape 1 : ouvrir le flap
+      // Ouvrir le rabat
       flap.style.transform = "perspective(800px) rotateX(-180deg)";
 
-      // Étape 2 : après un moment, faire tomber l’enveloppe
+      // Faire tomber l’enveloppe après 1s
       setTimeout(() => {
         envelope.classList.add("fall");
       }, 1000);
 
-      // Étape 3 : afficher la lettre en grand
+      // Afficher la lettre (zoom) après la chute
       setTimeout(() => {
         letter.classList.remove("hidden");
         letter.classList.add("show");
