@@ -10,7 +10,7 @@
   <!-- Logo animé -->
   <img src="logo.png" alt="Logo" class="logo">
 
-  <!-- Enveloppe SEULE -->
+  <!-- Enveloppe -->
   <div class="page">
     <div class="envelope">
       <div class="envelope-flap"></div>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <!-- Lettre séparée -->
+  <!-- Lettre -->
   <div class="letter hidden">
     <div class="letter-inner">
       <h1>🍔 Invitation Burger Folie 🍔</h1>
@@ -56,7 +56,9 @@
     </div>
   </div>
 
-  <!-- Script -->
+  <!-- Scripts -->
+  <!-- Confettis -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const envelope = document.querySelector(".envelope");
@@ -64,18 +66,25 @@
     const letter = document.querySelector(".letter");
 
     envelope.addEventListener("click", () => {
-      // Ouvrir le rabat
+      // Étape 1 : ouvrir le rabat
       flap.style.transform = "perspective(800px) rotateX(-180deg)";
 
-      // Faire tomber l’enveloppe après 1s
+      // Étape 2 : après 1 seconde, faire tomber l’enveloppe
       setTimeout(() => {
         envelope.classList.add("fall");
       }, 1000);
 
-      // Afficher la lettre (zoom) après la chute
+      // Étape 3 : afficher la lettre + confettis
       setTimeout(() => {
         letter.classList.remove("hidden");
         letter.classList.add("show");
+
+        // 🎉 Explosion de confettis
+        confetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
       }, 2200);
     });
   });
