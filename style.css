@@ -60,6 +60,13 @@ body {
   position: relative;
   z-index: 2;
 }
+.envelope.fall {
+  position: absolute; /* ✅ sort du flux flex */
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fall 2s forwards;
+}
+
 
 .envelope-flap {
   position: absolute;
