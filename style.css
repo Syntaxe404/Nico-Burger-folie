@@ -125,6 +125,15 @@ body {
   font-size: 1.2em;
   margin-bottom: 20px;
 }
+.letter-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 20px;
+}
 
 .burgers ul {
   list-style: none;
