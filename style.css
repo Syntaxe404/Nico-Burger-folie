@@ -59,31 +59,35 @@ body {
   cursor: pointer;
   z-index: 1001;
   border: 4px solid var(--stroke);
-  border-radius: 40px;
+  border-radius: 20px;
   background: var(--envelope-body);
   box-shadow: 6px 6px 0 var(--stroke);
   overflow: hidden;
 }
+
+/* Rabat pointu */
 .envelope-flap {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 55%;
+  height: 50%;
   background: var(--envelope-flap);
   border-bottom: 4px solid var(--stroke);
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
+  clip-path: polygon(0 0, 50% 100%, 100% 0); /* triangle */
   transform-origin: top center;
   transition: transform 0.9s cubic-bezier(.2,.9,.3,1);
   z-index: 3;
 }
+
+/* Corps de l’enveloppe */
 .envelope-body {
   position: absolute;
   inset: 0;
   background: var(--envelope-body);
-  border-radius: 40px;
+  border-radius: 20px;
 }
+
 
 /* Animation chute */
 @keyframes fall {
