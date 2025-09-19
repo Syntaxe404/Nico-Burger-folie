@@ -1,198 +1,198 @@
-/* 🌈 Style général */
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 :root {
   --paper: #fff8e7;
-  --stroke: #333;
+  --stroke: #222;
   --envelope: #f7d794;
   --envelope-dark: #e1b565;
+  --accent: #ff6f61;
 }
 
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+
 body {
-  margin: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: url("font.jpg") no-repeat center center fixed;
   background-size: cover;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
   overflow: hidden;
 }
 
 /* 🍔 Logo animé */
 .logo {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 80px;
+  top: 18px;
+  left: 18px;
+  width: 72px;
+  z-index: 12000;
   animation: spin 6s linear infinite;
-  z-index: 10000;
 }
-
 @keyframes spin {
-  from { transform: rotate(0deg); }
+  from { transform: rotate(0); }
   to { transform: rotate(360deg); }
 }
 
-/* ✉️ Enveloppe */
+/* Enveloppe centrée */
 .page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .envelope {
-  width: 280px;
-  height: 200px;
-  position: relative;
-  perspective: 1000px;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 230px;
   cursor: pointer;
-  z-index: 2000;
-  transition: transform 1s ease-in;
+  z-index: 1000;
+  transition: transform .4s ease;
 }
 
 .envelope-body {
   width: 100%;
   height: 100%;
   background: var(--envelope);
-  border: 3px solid var(--stroke);
-  border-radius: 6px;
-  box-shadow: 5px 5px 0 var(--stroke);
+  border-radius: 12px;
+  border: 4px solid var(--stroke);
+  box-shadow: 6px 6px 0 var(--stroke);
   position: relative;
-  z-index: 2;
-}
-.envelope.fall {
-  position: absolute; /* ✅ sort du flux flex */
-  left: 50%;
-  transform: translateX(-50%);
-  animation: fall 2s forwards;
+  z-index: 1;
 }
 
-
+/* Rabat triangulaire */
 .envelope-flap {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%) rotateX(0deg);
   width: 0;
   height: 0;
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-top: 100px solid var(--envelope-dark); /* ✅ rabat vers le bas */
-  transform-origin: top;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 120px solid var(--envelope-dark);
+  transform-origin: top center;
   transition: transform 1s ease-in-out;
   z-index: 3;
 }
-
+.envelope.open .envelope-flap {
+  transform: translateX(-50%) perspective(800px) rotateX(-180deg);
 }
 
-/* ✉️ Enveloppe qui tombe */
-.envelope.fall {
-  animation: fall 2s forwards;
-}
+/* Animation chute */
 @keyframes fall {
-  0% { transform: translateY(0) rotate(0); opacity: 1; }
-  100% { transform: translateY(800px) rotate(40deg); opacity: 0; }
+  0% { transform: translate(-50%,-50%) rotate(0); opacity: 1; }
+  100% { transform: translate(-50%,120vh) rotate(40deg); opacity: 0; }
 }
+.envelope.fall { animation: fall 1.3s ease forwards; }
 
-/* 📜 Lettre */
+/* Lettre */
 .letter {
-  background: var(--paper);
-  border: 4px solid var(--stroke);
-  border-radius: 20px;
-  box-shadow: 10px 10px 0 var(--stroke);
-  width: 60vw;
-  height: 70vh;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  z-index: 5000;
+  transform: translate(-50%,-50%) scale(0.6);
+  width: 60vw;
+  max-width: 760px;
+  height: 68vh;
+  max-height: 900px;
+  background: var(--paper);
+  border-radius: 18px;
+  border: 4px solid var(--stroke);
+  box-shadow: 10px 10px 0 var(--stroke);
+  z-index: 4000;
   opacity: 0;
-  transition: all 0.8s cubic-bezier(.2,1.2,.3,1);
+  transition: transform .6s cubic-bezier(.2,1.1,.3,1), opacity .4s ease;
   overflow: auto;
-  padding: 20px;
-}
-
-.letter.hidden {
-  display: none;
-}
-.letter.show {
-  display: block;
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* Texte intérieur */
-.letter-inner h1 {
-  text-align: center;
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-.letter-inner p.lead {
-  text-align: center;
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-.letter-inner {
+  padding: 22px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+
+.letter.hidden { display: none; }
+.letter.show {
+  display: flex;
+  opacity: 1;
+  transform: translate(-50%,-50%) scale(1);
+  animation: letterPop .5s cubic-bezier(.2,1.1,.3,1);
+}
+@keyframes letterPop {
+  0%   { transform: translate(-50%,-50%) scale(0.6); }
+  70%  { transform: translate(-50%,-50%) scale(1.08); }
+  100% { transform: translate(-50%,-50%) scale(1); }
+}
+
+/* Contenu de la lettre */
+.letter-inner {
+  width: 100%;
+  max-width: 680px;
   text-align: center;
-  height: 100%;
-  padding: 20px;
-}
-
-.burgers ul {
-  list-style: none;
-  padding: 0;
-}
-.burgers li {
-  font-size: 1.1em;
-  margin: 5px 0;
-}
-
-/* Questionnaire */
-.questionnaire {
-  margin-top: 20px;
-}
-.choices {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 12px;
+  align-items: center;
+}
+
+.letter-inner h1 { font-size: 1.9rem; margin: 6px 0; color: var(--accent); font-weight: 600; }
+.lead { font-size: 1rem; color: #444; margin: 0 0 6px; }
+
+.burgers { width: 100%; text-align: left; margin-top: 6px; }
+.burgers h2 { text-align: center; margin-bottom: 8px; color: var(--accent); }
+.burgers ul { list-style: none; padding-left: 18px; margin: 0; }
+.burgers li { margin: 6px 0; font-size: 1rem; }
+
+.questionnaire { width: 100%; margin-top: 10px; }
+.choices { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.choices label { font-size: 0.98rem; color: #333; }
+.questionnaire input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--stroke);
 }
 .btn {
-  background: #ff6347;
+  margin-top: 10px;
+  background: var(--accent);
+  color: #fff;
   border: none;
-  color: white;
-  padding: 10px 15px;
-  font-size: 1em;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: 600;
 }
-.btn:hover {
-  background: #e5533f;
-}
+.btn:hover { background: #e85c4f; }
 
-/* Pied de lettre */
-.invite-footer {
-  text-align: center;
-  margin-top: 20px;
-}
-.small {
-  font-size: 0.9em;
-  font-style: italic;
-  color: #555;
-}
+.invite-footer { margin-top: 12px; color: #666; font-size: 0.95rem; }
+.small { font-size: 0.9em; font-style: italic; }
 
-/* 🎉 Confettis toujours devant */
+/* Confettis */
 canvas.confetti-canvas {
   position: fixed !important;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100% !important;
   height: 100% !important;
-  z-index: 9999 !important;
+  z-index: 99999 !important;
   pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width:700px) {
+  .letter { width: 88vw; height: 78vh; }
+  .envelope { width: 260px; height: 190px; }
+  .envelope-flap {
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-top: 100px solid var(--envelope-dark);
+  }
 }
