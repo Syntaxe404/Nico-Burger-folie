@@ -50,8 +50,8 @@
 
       <div class="invite-footer">
         <p>📅 Date : Samedi soir</p>
-        <p>📍 Chez Nico ( c'est moi)</p>
-        <p class="small">On compte sur toi 😁 (moi et mon four)</p>
+        <p>📍 Chez Nico</p>
+        <p class="small">On compte sur toi 😁</p>
       </div>
     </div>
   </div>
@@ -61,14 +61,13 @@
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const envelope = document.querySelector(".envelope");
-    const flap = document.querySelector(".envelope-flap");
     const letter = document.querySelector(".letter");
 
     envelope.addEventListener("click", () => {
       // Étape 1 : ouvrir le rabat
-      flap.style.transform = "perspective(800px) rotateX(-180deg)";
+      envelope.classList.add("open");
 
-      // Étape 2 : après 1 seconde, faire tomber l’enveloppe
+      // Étape 2 : après 1s, faire tomber l’enveloppe
       setTimeout(() => {
         envelope.classList.add("fall");
       }, 1000);
@@ -78,35 +77,33 @@
         letter.classList.remove("hidden");
         letter.classList.add("show");
 
-       // Créer un canvas confettis devant tout
-const canvas = document.createElement("canvas");
-canvas.classList.add("confetti-canvas");
-document.body.appendChild(canvas);
+        // Créer un canvas confettis devant tout
+        const canvas = document.createElement("canvas");
+        canvas.classList.add("confetti-canvas");
+        document.body.appendChild(canvas);
 
-const myConfetti = confetti.create(canvas, {
-  resize: true,
-  useWorker: true
-});
+        const myConfetti = confetti.create(canvas, {
+          resize: true,
+          useWorker: true
+        });
 
-// 🎉 Explosion de confettis
-myConfetti({
-  particleCount: 200,
-  spread: 120,
-  origin: { y: 0.6 }
-});
+        // 🎉 Explosion
+        myConfetti({
+          particleCount: 200,
+          spread: 120,
+          origin: { y: 0.6 }
+        });
 
-// 🌈 Petite pluie de confettis pendant 2 secondes
-const duration = 2000;
-const end = Date.now() + duration;
-(function frame() {
-  myConfetti({
-    particleCount: 5,
-    spread: 70,
-    origin: { x: Math.random(), y: Math.random() - 0.2 }
-  });
-  if (Date.now() < end) {
-    requestAnimationFrame(frame);
-  }
+        // 🌈 Petite pluie de confettis pendant 2s
+        const duration = 2000;
+        const end = Date.now() + duration;
+        (function frame() {
+          myConfetti({
+            particleCount: 5,
+            spread: 70,
+            origin: { x: Math.random(), y: Math.random() - 0.2 }
+          });
+          if (Date.now() < end) requestAnimationFrame(frame);
         })();
       }, 2200);
     });
